@@ -1,5 +1,12 @@
-venv/
+# Python
 __pycache__/
 *.pyc
-data/raw/*
-data/processed/*
+
+# Virtual environment
+venv/
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
