@@ -1,12 +1,6 @@
 import numpy as np
-from collections import defaultdict
 from utils import generate_cbow_data
-from tokenizer import clean_text, build_vocab
-
-
-
-corpus="""In computer science, a bag of words (BoW) model is a simplifying representation used in natural language processing and information retrieval. In this model, a text (such as a sentence or a document) is represented as the bag (multiset) of its words, disregarding grammar and even word order but keeping multiplicity. The bag-of-words model is commonly used in methods of document classification where the frequency of each word is used as a feature for training a classifier."""
-
+from tokenizer import tokenizer
 
 
 class CBOW:
@@ -84,14 +78,12 @@ def train_cbow(model, training_pairs, epochs=10):
     return losses
 
 if __name__ == "__main__":
-    data=clean_text(corpus)
-    word_to_Id,Id_to_word,_ =build_vocab(data)
-    Token_ids=[word_to_Id[w]for w in data.split()]
+    Token_ids=tokenizer()
     data_set= generate_cbow_data(Token_ids, window_size=2)
     print("cbow model is training is going on......")
    
     model1 = CBOW(
-        vocab_size=len(word_to_Id),
+        vocab_size=len(set(Token_ids)),
         embedding_dim=100,
         window_size=2,
         learning_rate=0.01

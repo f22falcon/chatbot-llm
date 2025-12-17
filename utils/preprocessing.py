@@ -1,9 +1,23 @@
-def generate_cbow_data(token_ids, window_size):
-    pairs = []
+import re
 
-    for i in range(window_size, len(token_ids) - window_size):
-        context = token_ids[i - window_size : i] + token_ids[i + 1 : i + window_size + 1]
-        target = token_ids[i]
-        pairs.append((context, target))
 
-    return pairs
+def clean_text(path1,path2):
+    # Normalize text: lowercase + remove special characters
+    with open (path1,'r',encoding= 'utf-8') as f:
+        text=f.read()
+    text = text.lower()
+    text = re.sub(r"[^\w\s]", "", text)
+    text = re.sub(r"\([^)]*\)", "", text)
+    text = re.sub(r"\[\d+\][^a-zA-Z0-9\s]", "", text)
+    f.close()
+    with open (path2,'w',encoding='utf-8') as f:
+        f.write(text)
+    f.close()
+
+if __name__== "__main__":
+    clean_text("/media/tanmoy/B406FC5306FC1856/ProjectChatbot/data/raw/wiki_ai.txt","/media/tanmoy/B406FC5306FC1856/ProjectChatbot/data/processed/clean_data.txt")
+
+
+
+
+
