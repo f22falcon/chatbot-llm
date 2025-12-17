@@ -10,4 +10,4 @@ def tokenizer( file_name="clean_data.txt",path="/media/tanmoy/B406FC5306FC1856/P
     return Token_ids
 
 if __name__=="__main__":
-   print(tokenizer())
+   print(len(set(tokenizer())))

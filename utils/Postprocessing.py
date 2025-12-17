@@ -1,3 +1,5 @@
+import numpy as np
+
 def generate_cbow_data(token_ids, window_size):
     pairs = []
 
@@ -20,3 +22,12 @@ def generate_skipgram_pairs(token_ids, window_size=2):
                 pairs.append((target_id, context_id))
 
     return pairs
+
+def negative_sampling(vocab_size, positive_id, k,seed=42):
+    negs = set()
+    np.random.seed(seed)  # For reproducibility
+    while len(negs) < k:
+        n = np.random.randint(0, vocab_size - 1)
+        if n != positive_id:
+            negs.add(n)
+    return list(negs)

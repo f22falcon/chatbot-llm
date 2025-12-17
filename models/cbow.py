@@ -89,7 +89,7 @@ if __name__ == "__main__":
         learning_rate=0.01
     )
 
-    train_cbow(model1, data_set, epochs=10000)
+    train_cbow(model1, data_set, epochs=100)
     print(" training completed!!")
     
 
